@@ -1,0 +1,56 @@
+<meta content='width=device-width,minimum-scale=1,initial-scale=1' name='viewport'/>
+<div id='momenc'>
+<textarea id="codes" placeholder="Masukan Scrip Disini..." spellcheck="false"></textarea> 
+<br />
+<div class="button-group">
+	<center>
+		<span class="Apple-style-span" style="font-family: &quot;trebuchet ms&quot;; font-size: x-small; line-height: 20px;">Alat Parse HTML &nbsp;oleh &nbsp;<a href="https://momenc.blogspot.com/" style="color: #2980b9; text-decoration: none;">Momenc</a></span></center>
+	<button id="convert" onclick="cdConvert();this.disabled = true;">PARSE</button><button onclick="cdClear();">HAPUS SEMUA</button></div>
+<br />
+<ul id="wrapin">
+	<li><input checked="true" id="opt1" type="checkbox" />Ubah <code>&amp;</code> To <code>&amp;amp;</code></li>
+	<li><input checked="true" id="opt2" type="checkbox" />Ubah <code>&lt;</code> To <code>&amp;lt;</code></li>
+	<li><input checked="true" id="opt3" type="checkbox" />Ubah <code>&gt;</code> To <code>&amp;gt;</code></li>
+	<li><input id="opt4" type="checkbox" />Ubah <code>"</code> To <code>&amp;quot;</code></li>
+	<li><input id="opt5" type="checkbox" />Ubah <code>'</code> To <code>&amp;#039;</code></li>
+</ul>
+</div>
+<style type="text/css">
+code{font-family:Consolas,Monaco,'Andale Mono','Courier New',Courier,Monospace;color:#2a5ead;font-size:13px;padding:2px 4px;color:#0BA0D8;}
+#codes{font:13px 'Courier New',Monospace;border:1px solid #CCCCCC;width:550px;height:250px;margin:0 auto;display:block;background-color:#f2f2f2;color:#333;padding:15px;}
+.button-group{margin:0 auto 0;text-align:center}
+button,button[disabled]:active{border: none;padding: 5px 12px;color: #fff;background-color: #FF6359;cursor: pointer;font-size: 13px;margin: 0 10px;line-height: 23px;border-radius: 3px;transition: all 0.3s ease-in-out;}
+button:active{background:#AC5252;}
+button[disabled],button[disabled]:active{background:#AC5252;}
+#opt1,#opt2,#opt3,#opt4,#opt5{display:inline-block;margin-right:10px;}
+@media screen and (max-width:480px){.momenc{max-width:100%;}}
+@media screen and (min-width:600px) and (max-width:1124px){.momenc{max-width:100%;}}
+@media screen and (min-width:750px) and (max-width:876px){.momenc{max-width:100%;}}
+@media screen and (min-width:600px) and (max-width:749px){.momenc{max-width:100%;}}
+@media screen and (max-width:599px){.momenc{max-width:100%;}}</style> 
+<script type="text/javascript">
+function cdClear() {
+    var wtarea = document.getElementById('codes');
+    wtarea.value = '';
+    wtarea.focus();
+    document.getElementById('convert').disabled = false;
+}
+function cdConvert() {
+    var ctarea = document.getElementById('codes'),
+        cv = ctarea.value,
+        opt1 = document.getElementById('opt1'),
+        opt2 = document.getElementById('opt2'),
+        opt3 = document.getElementById('opt3'),
+        opt4 = document.getElementById('opt4'),
+        opt5 = document.getElementById('opt5');
+    cv = cv.replace(/t/g, "    ");
+    if (opt1.checked) cv = cv.replace(/&/g, "&amp;");
+    if (opt2.checked) cv = cv.replace(/</g, "&lt;");
+    if (opt3.checked) cv = cv.replace(/>/g, "&gt;");
+    if (opt4.checked) cv = cv.replace(/"/g, "&quot;");
+    if (opt5.checked) cv = cv.replace(/'/g, "&#039;");
+    ctarea.value = cv;
+    ctarea.focus();
+    ctarea.select();
+};
+</script>
